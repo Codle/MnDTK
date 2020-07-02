@@ -11,3 +11,6 @@ def test_cg():
 
 def test_dcg():
     assert f"{search_utils.dcg(rels, ranks):.3f}" == "6.861"
+
+def test_ndcg():
+    assert f"{search_utils.ndcg(rels, ranks):.3f}" == "0.961"

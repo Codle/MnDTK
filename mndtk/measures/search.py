@@ -16,6 +16,13 @@ def dcg(rels: np.array, ranks: np.array) -> np.float:
     return np.sum(rels / np.log2(ranks+1))
 
 
+def ndcg(rels: np.array, ranks: np.array) -> np.float:
+    dcg_score = dcg(rels, ranks)
+    sorted_rels = sorted(rels, reverse=True)
+    idcg_score = dcg(sorted_rels, np.arange(1, len(ranks)+1))
+    return dcg_score / idcg_score
+
+
 def pairwise_vec_mrr(src_vec: np.ndarray,
                      tgt_vec: np.ndarray,
                      distance_metric: str) -> Tuple[np.array, np.array]:
